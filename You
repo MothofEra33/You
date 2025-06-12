@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    #message {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #ffcc00;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    #countdown {
+      font-size: 5rem;
+      font-weight: bold;
+      margin: 20px 0;
+      opacity: 0;
+      animation: popIn 0.5s ease-in-out forwards;
+    }
+
+    .button {
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      background: linear-gradient(45deg, #ff4dff, #00f2fe);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .button.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome</h1>
+  <div id="message">Please wait... Sponsored by our partner. ⚠️</div>
+  <div id="countdown">3</div>
+  <button class="button" id="see-more">SEE MORE</button>
+
+  <script>
+    const countdownEl = document.getElementById('countdown');
+    const buttonEl = document.getElementById('see-more');
+    const messageEl = document.getElementById('message');
+
+    let count = 3;
+
+    function updateCountdown() {
+      countdownEl.textContent = count;
+      countdownEl.style.opacity = '1';
+
+      if (count === 0) {
+        countdownEl.textContent = 'GO!';
+        buttonEl.classList.add('show');
+
+        // Open only one popup window
+        setTimeout(() => {
+          window.open('https://www.profitableratecpm.com/ua424dbdn?key=851fa1244a6b9048cfad0f396592641a', '_blank', 'width=600,height=400');
+        }, 500);
+      } else {
+        count--;
+        setTimeout(updateCountdown, 1000);
+      }
+    }
+
+    window.onload = () => {
+      setTimeout(updateCountdown, 500);
+    };
+  </script>
+</body>
+</html>
